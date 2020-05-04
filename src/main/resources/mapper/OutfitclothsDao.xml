@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.hanger.dao.OutfitclothsDao">
+
+    <resultMap type="com.example.hanger.entity.Outfitcloths" id="OutfitclothsMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="outfitId" column="outfit_id" jdbcType="INTEGER"/>
+        <result property="clothsId" column="cloths_id" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="OutfitclothsMap">
+        select
+          *
+
+        from hanger.outfitcloths
+        where id = #{id}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="OutfitclothsMap">
+        select
+          *
+
+        from hanger.outfitcloths
+        limit #{offset}, #{limit}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="OutfitclothsMap">
+        select
+          *
+
+        from hanger.outfitcloths
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="outfitId != null">
+                and outfit_id = #{outfitId}
+            </if>
+            <if test="clothsId != null">
+                and cloths_id = #{clothsId}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+        insert into hanger.outfitcloths(outfit_id, cloths_id)
+        values (#{outfitId}, #{clothsId})
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update hanger.outfitcloths
+        <set>
+            <if test="outfitId != null">
+                outfit_id = #{outfitId},
+            </if>
+            <if test="clothsId != null">
+                cloths_id = #{clothsId},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from hanger.outfitcloths where id = #{id}
+    </delete>
+
+</mapper>

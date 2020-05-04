@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.hanger.dao.EnumCategoryDao">
+
+    <resultMap type="com.example.hanger.entity.EnumCategory" id="EnumCategoryMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="value" column="value" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="EnumCategoryMap">
+        select
+          *
+
+        from hanger.enum_category
+        where id = #{id}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="EnumCategoryMap">
+        select
+          *
+
+        from hanger.enum_category
+        limit #{offset}, #{limit}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="EnumCategoryMap">
+        select
+          *
+
+        from hanger.enum_category
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="value != null and value != ''">
+                and value = #{value}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+        insert into hanger.enum_category(value)
+        values (#{value})
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update hanger.enum_category
+        <set>
+            <if test="value != null and value != ''">
+                value = #{value},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from hanger.enum_category where id = #{id}
+    </delete>
+
+</mapper>
