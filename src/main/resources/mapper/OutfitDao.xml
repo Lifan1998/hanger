@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.hanger.dao.OutfitDao">
+
+    <resultMap type="com.example.hanger.entity.Outfit" id="OutfitMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="userId" column="user_id" jdbcType="INTEGER"/>
+        <result property="season" column="season" jdbcType="INTEGER"/>
+        <result property="imageUrl" column="image_url" jdbcType="VARCHAR"/>
+        <result property="dressup" column="dressup" jdbcType="INTEGER"/>
+        <result property="temperature" column="temperature" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="OutfitMap">
+        select
+          *
+
+        from hanger.outfit
+        where id = #{id}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="OutfitMap">
+        select
+          *
+
+        from hanger.outfit
+        limit #{offset}, #{limit}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="OutfitMap">
+        select
+          *
+
+        from hanger.outfit
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="userId != null">
+                and user_id = #{userId}
+            </if>
+            <if test="season != null">
+                and season = #{season}
+            </if>
+            <if test="imageUrl != null and imageUrl != ''">
+                and image_url = #{imageUrl}
+            </if>
+            <if test="dressup != null">
+                and dressup = #{dressup}
+            </if>
+            <if test="temperature != null">
+                and temperature = #{temperature}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+        insert into hanger.outfit(user_id, season, image_url, dressup, temperature)
+        values (#{userId}, #{season}, #{imageUrl}, #{dressup}, #{temperature})
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update hanger.outfit
+        <set>
+            <if test="userId != null">
+                user_id = #{userId},
+            </if>
+            <if test="season != null">
+                season = #{season},
+            </if>
+            <if test="imageUrl != null and imageUrl != ''">
+                image_url = #{imageUrl},
+            </if>
+            <if test="dressup != null">
+                dressup = #{dressup},
+            </if>
+            <if test="temperature != null">
+                temperature = #{temperature},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from hanger.outfit where id = #{id}
+    </delete>
+
+</mapper>
