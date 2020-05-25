@@ -30,6 +30,7 @@
         limit #{offset}, #{limit}
     </select>
 
+
     <!--通过实体作为筛选条件查询-->
     <select id="queryAll" resultMap="ClothsMap">
         select

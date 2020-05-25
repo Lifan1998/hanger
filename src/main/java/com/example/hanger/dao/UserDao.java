@@ -20,6 +20,8 @@ public interface UserDao {
      */
     User queryById(Integer id);
 
+    User queryByMobileNo(String mobileNo);
+
     /**
      * 查询指定行数据
      *

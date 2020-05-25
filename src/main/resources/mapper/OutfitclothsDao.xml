@@ -26,6 +26,15 @@
         limit #{offset}, #{limit}
     </select>
 
+    <!--查询单品被搭配数-->
+    <select id="queryUsedClothsCount" resultMap="OutfitclothsMap">
+        select
+          cloths_id, count (outfit_id) as clothsCount
+        from hanger.outfitcloths
+        where cloths_id in (#{cloths_id})
+        group by cloths_id
+    </select>
+
     <!--通过实体作为筛选条件查询-->
     <select id="queryAll" resultMap="OutfitclothsMap">
         select

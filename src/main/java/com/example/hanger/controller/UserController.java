@@ -1,7 +1,9 @@
 package com.example.hanger.controller;
 
+import com.example.hanger.domain.LoginContext;
 import com.example.hanger.entity.User;
 import com.example.hanger.service.UserService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -32,6 +34,13 @@ public class UserController {
         return this.userService.queryById(id);
     }
 
-
+    @PostMapping("login")
+    public User login(@RequestBody LoginContext loginContext) {
+        if (loginContext.getLoginType() ==  1) {
+            // 手机号登录
+            return userService.loginByMobileNo(loginContext.getMobile(), loginContext.getPassword());
+        }
+        return null;
+    }
 
 }

@@ -19,6 +19,8 @@ public interface UserService {
      */
     User queryById(Integer id);
 
+    User loginByMobileNo(String mobile, String password);
+
     /**
      * 查询多条数据
      *

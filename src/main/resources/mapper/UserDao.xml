@@ -25,6 +25,15 @@
         where id = #{id}
     </select>
 
+    <!--查询单个-->
+    <select id="queryByMobileNo" resultMap="UserMap">
+        select
+          *
+
+        from hanger.user
+        where moblie = #{mobileNo}
+    </select>
+
     <!--查询指定行数据-->
     <select id="queryAllByLimit" resultMap="UserMap">
         select
