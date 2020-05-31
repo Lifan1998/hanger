@@ -17,7 +17,7 @@ public interface UserService {
      * @param id 主键
      * @return 实例对象
      */
-    User queryById(Integer id);
+    User get(Integer id);
 
     User loginByMobileNo(String mobile, String password);
 

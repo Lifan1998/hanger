@@ -18,7 +18,7 @@ public class Cloths implements Serializable {
     
     private Integer category;
     
-    private Integer imageUrl;
+    private String imageUrl;
     
     private Integer userId;
     

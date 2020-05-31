@@ -1,18 +1,24 @@
 package com.example.hanger.entity;
 
-import lombok.Data;
-
 import java.io.Serializable;
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  * (Outfit)实体类
  *
  * @author makejava
- * @since 2020-05-03 17:42:26
+ * @since 2020-05-28 00:28:15
  */
 @Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class Outfit implements Serializable {
-    private static final long serialVersionUID = 681815905290590664L;
+    private static final long serialVersionUID = 245128289811089334L;
     
     private Integer id;
     
@@ -25,6 +31,5 @@ public class Outfit implements Serializable {
     private Integer dressup;
     
     private Integer temperature;
-
 
 }

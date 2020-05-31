@@ -29,10 +29,18 @@
     <!--查询单品被搭配数-->
     <select id="queryUsedClothsCount" resultMap="OutfitclothsMap">
         select
-          cloths_id, count (outfit_id) as clothsCount
+          cloths_id, count(outfit_id) as `outfit_id`
         from hanger.outfitcloths
-        where cloths_id in (#{cloths_id})
+        inner join outfit on outfit.id = outfitcloths.outfit_id
+        where outfit.user_id = #{userId}
         group by cloths_id
+    </select>
+
+    <select id="queryClothsIdsByOutfitId" resultMap="OutfitclothsMap">
+        select
+          *
+        from hanger.outfitcloths
+        where outfit_id = #{outfitId}
     </select>
 
     <!--通过实体作为筛选条件查询-->

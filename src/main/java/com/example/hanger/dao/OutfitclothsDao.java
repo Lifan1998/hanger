@@ -29,6 +29,8 @@ public interface OutfitclothsDao {
      */
     List<Outfitcloths> queryAllByLimit(@Param("offset") int offset, @Param("limit") int limit);
 
+    List<Outfitcloths> queryUsedClothsCount(Integer userId);
+
 
     /**
      * 通过实体作为筛选条件查询
@@ -62,4 +64,6 @@ public interface OutfitclothsDao {
      */
     int deleteById(Integer id);
 
+
+    List<Outfitcloths> queryClothsIdsByOutfitId(Integer outfitId);
 }

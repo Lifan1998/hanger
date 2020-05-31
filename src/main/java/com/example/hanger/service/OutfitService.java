@@ -7,7 +7,7 @@ import java.util.List;
  * (Outfit)表服务接口
  *
  * @author makejava
- * @since 2020-05-03 17:42:27
+ * @since 2020-05-27 18:41:59
  */
 public interface OutfitService {
 
@@ -27,6 +27,8 @@ public interface OutfitService {
      * @return 对象列表
      */
     List<Outfit> queryAllByLimit(int offset, int limit);
+    
+    List<Outfit> queryAll(Outfit outfit);
 
     /**
      * 新增数据

@@ -8,7 +8,7 @@ import java.util.List;
  * (Outfit)表数据库访问层
  *
  * @author makejava
- * @since 2020-05-03 17:42:27
+ * @since 2020-05-28 00:28:17
  */
 public interface OutfitDao {
 

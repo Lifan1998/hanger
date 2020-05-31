@@ -12,7 +12,7 @@ import java.util.List;
  * (Outfit)表服务实现类
  *
  * @author makejava
- * @since 2020-05-03 17:42:27
+ * @since 2020-05-27 18:42:05
  */
 @Service
 public class OutfitServiceImpl implements OutfitService {
@@ -40,6 +40,11 @@ public class OutfitServiceImpl implements OutfitService {
     @Override
     public List<Outfit> queryAllByLimit(int offset, int limit) {
         return this.outfitDao.queryAllByLimit(offset, limit);
+    }
+    
+    @Override
+    public List<Outfit> queryAll(Outfit outfit) {
+        return this.outfitDao.queryAll(outfit);
     }
 
     /**

@@ -3,6 +3,7 @@ package com.example.hanger.controller;
 import com.example.hanger.domain.LoginContext;
 import com.example.hanger.entity.User;
 import com.example.hanger.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,23 +21,23 @@ public class UserController {
     /**
      * 服务对象
      */
-    @Resource
+    @Autowired
     private UserService userService;
 
     /**
      * 通过主键查询单条数据
      *
-     * @param id 主键
+     * @param userId 主键
      * @return 单条数据
      */
     @GetMapping("/get")
-    public User get(Integer id) {
-        return this.userService.queryById(id);
+    public User get(Integer userId) {
+        return userService.get(userId);
     }
 
     @PostMapping("login")
     public User login(@RequestBody LoginContext loginContext) {
-        if (loginContext.getLoginType() ==  1) {
+        if (loginContext.getLoginType() == 1) {
             // 手机号登录
             return userService.loginByMobileNo(loginContext.getMobile(), loginContext.getPassword());
         }

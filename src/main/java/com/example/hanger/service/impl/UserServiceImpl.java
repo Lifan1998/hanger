@@ -3,6 +3,7 @@ package com.example.hanger.service.impl;
 import com.example.hanger.entity.User;
 import com.example.hanger.dao.UserDao;
 import com.example.hanger.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -17,7 +18,7 @@ import java.util.List;
  */
 @Service
 public class UserServiceImpl implements UserService {
-    @Resource
+    @Autowired
     private UserDao userDao;
 
     /**
@@ -27,8 +28,8 @@ public class UserServiceImpl implements UserService {
      * @return 实例对象
      */
     @Override
-    public User queryById(Integer id) {
-        return this.userDao.queryById(id);
+    public User get(Integer id) {
+        return userDao.queryById(id);
     }
 
     @Override
@@ -80,7 +81,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public User update(User user) {
         this.userDao.update(user);
-        return this.queryById(user.getId());
+        return this.get(user.getId());
     }
 
     /**
